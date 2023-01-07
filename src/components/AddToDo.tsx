@@ -3,7 +3,11 @@ import { IItem } from '../types/todo';
 
 type OnlyTitle = Pick<IItem, 'title'>;
 
-const AddToDo: React.FC = () => {
+interface IProps {
+  onAddTodo: (todo: IItem) => void;
+}
+
+const AddToDo: React.FC<IProps> = props => {
   const [todo, titleTodo] = useState<Partial<OnlyTitle>>({});
 
   function titleHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -17,7 +21,7 @@ const AddToDo: React.FC = () => {
     if (!todo.title) {
       return;
     }
-    console.log(todo.title);
+    props.onAddTodo(todo as IItem);
   }
   return (
     <form onSubmit={submitHandler}>
