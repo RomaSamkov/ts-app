@@ -17,10 +17,18 @@ const App: React.FC = () => {
       ];
     });
   }
+  function removeTodoHandler(id: string): void {
+    setTodos(prevTodos => {
+      return prevTodos.filter(item => {
+        return item.id !== id;
+      });
+    });
+  }
+
   return (
     <div className="App">
       <AddToDo onAddTodo={addTodoHandler} />
-      <ToDoList todos={todos} />
+      <ToDoList onRemoveTodo={removeTodoHandler} todos={todos} />
     </div>
   );
 };
