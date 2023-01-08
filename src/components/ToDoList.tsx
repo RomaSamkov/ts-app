@@ -3,6 +3,7 @@ import { IItem } from '../types/todo';
 
 interface IProps {
   todos: IItem[];
+  onRemoveTodo: (id: string) => void;
 }
 
 const ToDoList: React.FC<IProps> = props => {
@@ -13,6 +14,9 @@ const ToDoList: React.FC<IProps> = props => {
           <li key={item.id}>
             <div>{item.id}</div>
             <div>{item.title}</div>
+            <button onClick={props.onRemoveTodo.bind(this, item.id)}>
+              Remove
+            </button>
           </li>
         );
       })}
